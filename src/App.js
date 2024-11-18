@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import './App.css';
+import map from './exampleMap1.png'
 
 const Home = () => {
   return (
     <div className="home-screen">
-      <h1>Home Screen</h1>
+      {/*<h1>Home Screen</h1>*/}
+      <img src={map} alt="Home-Screen"/>
       {/* Placeholder for homescreen */}
     </div>
   );
