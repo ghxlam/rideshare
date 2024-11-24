@@ -19,7 +19,13 @@
   justify-content: space-around;
   align-items: center;
   background-color: #333;
-  padding: 10px;
+  color: white;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .nav-button {
@@ -43,6 +49,7 @@
   border-radius: 5px;
   padding: 5px;
 }
+
 .account-screen{
   padding: 20px;
   text-align: center;
@@ -112,4 +119,154 @@
 }
 .logout-btn:hover{
   background-color: #c82333;
+}
+
+.ride-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+.ride-screen h1 {
+  text-align: center;
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+/* Scrollable content */
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  padding-bottom: 60px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.checkmark {
+  color: green;
+}
+
+.ride-box {
+  border: 1px solid #28a745;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.ride-box.approved {
+  border-color: #28a745;
+}
+
+.ride-box.scheduled {
+  border-color: #ffc107;
+}
+
+.schedule-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.schedule-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.schedule-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.schedule-button:hover {
+  background-color: #0056b3;
+}
+
+/*drive screen--------------------------------------*/
+
+.drive-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.drive-screen h1 {
+  text-align: center;
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+/* Scrollable content */
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  padding-bottom: 60px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.checkmark {
+  color: green;
+}
+
+.drive-box {
+  border: 1px solid #28a745;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.drive-box.available {
+  border-color: #ffc107;
+}
+
+.drive-box.upcoming {
+  border-color: #28a745;
+}
+
+.accept-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.accept-button:hover {
+  background-color: #0056b3;
 }
