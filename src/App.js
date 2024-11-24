@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import './App.css';
 import map from './exampleMap1.png'
+import placeholderImage from './placeholder-profile.jpg'
 
 const Home = () => {
   return (
@@ -32,11 +33,66 @@ const Drive = () => {
 };
 
 const Account = () => {
+  const [userName, setUserName] = useState('John Doe');
+  const [userEmail, setUserEmail] = useState('johndoe@example.com');
+  const [userBio, setUserBio] = useState('I am the Storm that is approaching');
+  const [profileImage, setProfileImage] = useState(placeholderImage);
+
+  const handleUserName = () => {
+    const newUserName = prompt('Edit your username', userName);
+    if (newUserName !== null && newUserName.trim() !== ""){
+      setUserName(newUserName);
+    }
+  };
+
+  const handleUserEmail = () => {
+    const newUserEmail = prompt('Enter new email', userEmail);
+    if (newUserEmail !== null && newUserEmail.trim() !== "" && newUserEmail.includes("@") && newUserEmail.includes(".")){
+      setUserEmail(newUserEmail);
+    }
+  };
+
+  const handleEditBio = () => {
+    const newBio = prompt('Edit your bio', userBio);
+    if (newBio !== null && newBio.trim() !== ""){
+      setUserBio(newBio);
+    }
+  };
+
+  const handleEditImage = () => {
+    const newImageUrl = prompt('Enter the URL of your new profile image: ');
+    if (newImageUrl){
+      setProfileImage(newImageUrl);
+    }
+  };
   return (
     <div className="account-screen">
-      <h1>Account Screen</h1>
-      {/* Placeholder for account */}
+      <h1>Profile</h1>
+      <div className = "profile-info">
+        <div className = "profile-image-container">
+          <img
+            src={profileImage}
+            alt="Profile"
+            className="profile-image"
+          />
+          <button onClick={handleEditImage} className="edit-image-btn">Change Image</button>
+        </div>
+
+        <div className="user-details">
+          <h2>{userName}</h2>
+          <button onClick={handleUserName} className = "edit username">Edit username</button>
+          <p>{userEmail}</p>
+          <button onClick={handleUserEmail} className = "edit email"> Edit email</button>
+          <p className="bio">{userBio}</p>
+          <button onClick={handleEditBio} className="edit-bio-tbn">Edit Bio</button>
+        </div>
+
+        <div ClassName="account-actions">
+          <button className="logout-btn">Logout</button>
+        </div>
+      </div>
     </div>
+
   );
 };
 
@@ -75,3 +131,4 @@ const App = () => {
 };
 
 export default App;
+
