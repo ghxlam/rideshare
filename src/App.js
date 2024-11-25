@@ -3,18 +3,37 @@ import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import './App.css';
 import placeholderImage from './placeholder-profile.jpg'
 import map from './mapimagephone.jpg'
+import logo from './rideshareNJITlogo.png'
 
 const Home = () => {
   return (
     <div className="home-screen">
-      {/*<h1>Home Screen</h1>*/}
-      <img src={map} alt="Home-Screen" style={{ width: '433px', height: '820px' }} />
-      {/* Placeholder for homescreen */}
+      {/* Wrapper for the image and overlay content */}
+      <div className="image-wrapper">
+        <img src={map} alt="Home-Screen" className="home-image" />
+
+        {/* Upcoming Events Section */}
+        <div className="upcoming-events">
+          <h2>Upcoming Events</h2>
+          <ul className="events-list">
+            <li>
+              <strong>11/26</strong> Music Program - CKB-116 3-6PM
+            </li>
+            <li>
+              <strong>11/26</strong> Tubsgiving - CC-Ballroom 6-9PM
+            </li>
+            <li>
+              <strong>11/27</strong> LAX Film - WEC-PerryTHTR 1-3PM
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
 
 const Ride = () => {
+  const [isFormVisible, setIsFormVisible] = useState(false); // State to toggle form visibility
 
   const generateLicensePlate = () => {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -173,46 +192,53 @@ const Ride = () => {
 
         {/* Schedule a New Ride Section */}
         <div className="section">
-          <h2>Schedule a New Ride</h2>
-          <form className="schedule-form" onSubmit={handleFormSubmit}>
-            <label>
-              Pick-up Location:
-              <input
-                type="text"
-                name="pickupLocation"
-                value={formDetails.pickupLocation}
-                onChange={handleInputChange}
-                placeholder="Enter pick-up location"
-                required
-              />
-            </label>
-            <label>
-              Pick-up Date:
-              <input
-                type="date"
-                name="date"
-                value={formDetails.date}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <label>
-              Pick-up Time:
-              <input
-                type="time"
-                name="time"
-                value={formDetails.time}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
-            <p>
-              <strong>Destination:</strong> NJIT, 184-198 Central Ave, Newark, NJ 07103 (Locked)
-            </p>
-            <button type="submit" className="schedule-button">
-              Schedule Ride
-            </button>
-          </form>
+          <button
+            className="toggle-button"
+            onClick={() => setIsFormVisible(!isFormVisible)}
+          >
+            {isFormVisible ? "Hide Schedule Form" : "Schedule a New Ride"}
+          </button>
+          {isFormVisible && (
+            <form className="schedule-form" onSubmit={handleFormSubmit}>
+              <label>
+                Pick-up Location:
+                <input
+                  type="text"
+                  name="pickupLocation"
+                  value={formDetails.pickupLocation}
+                  onChange={handleInputChange}
+                  placeholder="Enter pick-up location"
+                  required
+                />
+              </label>
+              <label>
+                Pick-up Date:
+                <input
+                  type="date"
+                  name="date"
+                  value={formDetails.date}
+                  onChange={handleInputChange}
+                  required
+                />
+              </label>
+              <label>
+                Pick-up Time:
+                <input
+                  type="time"
+                  name="time"
+                  value={formDetails.time}
+                  onChange={handleInputChange}
+                  required
+                />
+              </label>
+              <p>
+                <strong>Destination:</strong> NJIT, 184-198 Central Ave, Newark, NJ 07103 (Locked)
+              </p>
+              <button type="submit" className="schedule-button">
+                Schedule Ride
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </div>
@@ -361,7 +387,6 @@ const Account = () => {
   };
   return (
     <div className="account-screen">
-      <h1>Profile</h1>
       <div className = "profile-info">
         <div className = "profile-image-container">
           <img
@@ -394,6 +419,11 @@ const App = () => {
   return (
     <Router>
       <div className="app">
+        <header className="app-header">
+          <img src={logo} alt="App Logo" className="app-logo" />
+          <h2 className='app-title'>RideShare</h2>
+        </header>
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ride" element={<Ride />} />
