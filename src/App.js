@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import './App.css';
-import placeholderImage from './placeholder-profile.jpg'
+import placeholderImage from './jaypatelexampleimg.jpg'
 import map from './mapimagephone.jpg'
 import logo from './rideshareNJITlogo.png'
 
@@ -353,65 +353,138 @@ const Drive = () => {
 };
 
 const Account = () => {
-  const [userName, setUserName] = useState('John Doe');
-  const [userEmail, setUserEmail] = useState('johndoe@example.com');
-  const [userBio, setUserBio] = useState('I am the Storm that is approaching');
+  const [userName, setUserName] = useState("Jay Patel");
+  const [userEmail, setUserEmail] = useState("jcp9@njit.edu");
+  const [userBio, setUserBio] = useState("NJIT Student in CS485");
   const [profileImage, setProfileImage] = useState(placeholderImage);
+  const [phoneNumber, setPhoneNumber] = useState("123-456-7890");
+  const [studentId, setStudentId] = useState("123456789");
+  const [isStudentIdVerified, setIsStudentIdVerified] = useState(false);
+  const [governmentId, setGovernmentId] = useState("NJ123456");
 
   const handleUserName = () => {
-    const newUserName = prompt('Edit your username', userName);
-    if (newUserName !== null && newUserName.trim() !== ""){
+    const newUserName = prompt("Edit your username", userName);
+    if (newUserName !== null && newUserName.trim() !== "") {
       setUserName(newUserName);
     }
   };
 
   const handleUserEmail = () => {
-    const newUserEmail = prompt('Enter new email', userEmail);
-    if (newUserEmail !== null && newUserEmail.trim() !== "" && newUserEmail.includes("@") && newUserEmail.includes(".")){
+    const newUserEmail = prompt("Enter new email", userEmail);
+    if (
+      newUserEmail !== null &&
+      newUserEmail.trim() !== "" &&
+      newUserEmail.includes("@") &&
+      newUserEmail.includes(".")
+    ) {
       setUserEmail(newUserEmail);
     }
   };
 
   const handleEditBio = () => {
-    const newBio = prompt('Edit your bio', userBio);
-    if (newBio !== null && newBio.trim() !== ""){
+    const newBio = prompt("Edit your bio", userBio);
+    if (newBio !== null && newBio.trim() !== "") {
       setUserBio(newBio);
     }
   };
 
   const handleEditImage = () => {
-    const newImageUrl = prompt('Enter the URL of your new profile image: ');
-    if (newImageUrl){
+    const newImageUrl = prompt("Enter the URL of your new profile image: ");
+    if (newImageUrl) {
       setProfileImage(newImageUrl);
     }
   };
+
+  const handleEditPhoneNumber = () => {
+    const newPhoneNumber = prompt("Enter new phone number", phoneNumber);
+    if (newPhoneNumber !== null && newPhoneNumber.trim() !== "") {
+      setPhoneNumber(newPhoneNumber);
+    }
+  };
+
+  const handleEditStudentId = () => {
+    const newStudentId = prompt("Edit your Student ID", studentId);
+    if (newStudentId !== null && newStudentId.trim() !== "") {
+      setStudentId(newStudentId);
+    }
+  };
+
+  const toggleStudentIdVerification = () => {
+    setIsStudentIdVerified(!isStudentIdVerified);
+  };
+
+  const handleEditGovernmentId = () => {
+    const newGovernmentId = prompt("Enter your Government ID", governmentId);
+    if (newGovernmentId !== null && newGovernmentId.trim() !== "") {
+      setGovernmentId(newGovernmentId);
+    }
+  };
+
   return (
     <div className="account-screen">
-      <div className = "profile-info">
-        <div className = "profile-image-container">
+      <div className="profile-info">
+        <div className="profile-image-container">
           <img
             src={profileImage}
             alt="Profile"
             className="profile-image"
           />
-          <button onClick={handleEditImage} className="edit-image-btn">Change Image</button>
+          <button onClick={handleEditImage} className="edit-image-btn">
+            Change Image
+          </button>
         </div>
 
         <div className="user-details">
           <h2>{userName}</h2>
-          <button onClick={handleUserName} className = "edit username">Edit username</button>
-          <p>{userEmail}</p>
-          <button onClick={handleUserEmail} className = "edit email"> Edit email</button>
-          <p className="bio">{userBio}</p>
-          <button onClick={handleEditBio} className="edit-bio-tbn">Edit Bio</button>
+          <button onClick={handleUserName} className="edit username">
+            Edit Name
+          </button>
+          <p>Email: {userEmail}</p>
+          <button onClick={handleUserEmail} className="edit email">
+            Edit Email
+          </button>
+          <p>Phone Number: {phoneNumber}</p>
+          <button onClick={handleEditPhoneNumber} className="edit-phone-btn">
+            Edit Phone Number
+          </button>
+          <p className="bio">
+            <strong>Bio: </strong>
+            {userBio}
+          </p>
+          <button onClick={handleEditBio}>
+            Edit Bio
+          </button>
+          <p>
+            Student ID: {studentId}{" "}
+            <span
+              style={{
+                color: isStudentIdVerified ? "green" : "red",
+                fontWeight: "bold",
+              }}
+            >
+              {isStudentIdVerified ? "Verified" : "Not Verified"}
+            </span>
+          </p>
+          <button onClick={handleEditStudentId} className="edit-student-id-btn">
+            Edit Student ID
+          </button>
+          <button
+            onClick={toggleStudentIdVerification}
+            className="toggle-verification-btn"
+          >
+            {isStudentIdVerified ? "Unverify" : "Verify"}
+          </button>
+          <p>Government ID: {governmentId}</p>
+          <button onClick={handleEditGovernmentId} className="edit-id-btn">
+            Edit Government ID
+          </button>
+          <p>Payment Methods: Stripe</p>
         </div>
-
-        <div ClassName="account-actions">
+        <div className="account-actions">
           <button className="logout-btn">Logout</button>
         </div>
       </div>
     </div>
-
   );
 };
 
